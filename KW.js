@@ -14,7 +14,7 @@
         // Browser global
         root.KW = factory((root.jQuery || root.Zepto || root.ender || root.$), root.kendo, root.moment);
     }
-}(this, function ($, kendo) {
+}(this, function ($, kendo, moment) {
 
 	// return a default if the provided value is null or undefined
     var _default = function (v, d) { return v == null ? d : v; };
