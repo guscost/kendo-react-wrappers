@@ -4,7 +4,14 @@ Use Kendo UI Core widgets in a React application
 ## Summary
 These wrappers are designed as drop-in React components. Use as follows:
 
-    <KW.DatePicker value={this.state.datePickerValue} />
+    <KW.DatePicker value={this.state.myDate} onChange={this._onChangeMyDate} />
+
+    ...
+
+    // note this will be called with the value itself, not an event
+    _onChangeMyDate: function (value) {
+        this.setState({ myDate: value });
+    }
 
 The library makes an instance of the widget only once in componentDidMount, and then new props are used to update the existing widget whenever possible.
 The goal is to have the widget behave in a stateless fashion but still have pretty good performance.
