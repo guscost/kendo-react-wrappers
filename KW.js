@@ -100,14 +100,6 @@
           }
         }
       }
-    },
-
-    render: function () {
-      return React.createElement('input', {
-        id: this.props.id,
-        className: this.props.className,
-        style: this.props.style
-      });
     }
   };
 
@@ -141,14 +133,14 @@
     componentDidMount: function () {
       var $node = $(this.getDOMNode());
       $node.kendoDatePicker({
-        value: moment(this.props.value).toDate(),
+        value: this.props.value ? moment(this.props.value).toDate() : "",
         max: this.props.max,
         min: this.props.min,
         format: this.props.format
       });
       var widget = $node.data('kendoDatePicker');
-      widget.enable(this.props.enabled);
       widget.readonly(this.props.readonly);
+      widget.enable(this.props.enabled);
       widget.bind('change', this._onChange);
     },
 
@@ -170,8 +162,8 @@
 
         // these props have setter functions
         if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
-        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
         if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
 
         // build new options object to set these
         if (nextProps.max !== this.props.max) { newOptions.max = moment(nextProps.max).toDate(); }
@@ -179,6 +171,14 @@
         if (nextProps.format !== this.props.format) { newOptions.format = nextProps.format; }
         if (newOptions) { widget.setOptions(newOptions); }
       }
+    },
+
+    render: function () {
+      return React.createElement('div', {
+        id: this.props.id,
+        className: this.props.className,
+        style: this.props.style
+      });
     },
 
     _onChange: function (event) {
@@ -217,7 +217,7 @@
     componentDidMount: function () {
       var $node = $(this.getDOMNode());
       $node.kendoDateTimePicker({
-        value: moment(this.props.value).toDate(),
+        value: this.props.value ? moment(this.props.value).toDate() : "",
         max: this.props.max,
         min: this.props.min,
         format: this.props.format
@@ -246,8 +246,8 @@
 
         // these props have setter functions
         if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
-        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
         if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
 
         // build new options object to set these
         if (nextProps.max !== this.props.max) { newOptions.max = moment(nextProps.max).toDate(); }
@@ -255,6 +255,14 @@
         if (nextProps.format !== this.props.format) { newOptions.format = nextProps.format; }
         if (newOptions) { widget.setOptions(newOptions); }
       }
+    },
+
+    render: function () {
+      return React.createElement('div', {
+        id: this.props.id,
+        className: this.props.className,
+        style: this.props.style
+      });
     },
 
     _onChange: function (event) {
@@ -273,7 +281,7 @@
     propTypes: {
       value: React.PropTypes.number,
       mask: React.PropTypes.string,
-			rules: React.PropTypes.object,
+      rules: React.PropTypes.object,
       enabled: React.PropTypes.bool,
       readonly: React.PropTypes.bool
     },
@@ -282,7 +290,7 @@
       return {
         value: null,
         mask: null,
-				rules: null,
+        rules: null,
         enabled: true,
         readonly: false
       };
@@ -293,13 +301,13 @@
       $node.kendoMaskedTextBox({
         value: this.props.value,
         mask: this.props.mask,
-				rules: this.props.rules
+        rules: this.props.rules
       });
 
       // set initial enabled and readonly settings
       var widget = $node.data("kendoMaskedTextBox");
-      widget.enable(this.props.enabled);
       widget.readonly(this.props.readonly);
+      widget.enable(this.props.enabled);
 
       // bind to widget events
       widget.bind('change', this._onChange);
@@ -312,8 +320,8 @@
     componentWillReceiveProps: function (nextProps) {
       if (
         nextProps.value !== this.props.value ||
-        nextProps.enabled !== this.props.enabled ||
         nextProps.readonly !== this.props.readonly ||
+        nextProps.enabled !== this.props.enabled ||
         nextProps.mask !== this.props.mask ||
         nextProps.rules !== this.props.rules
       ) {
@@ -328,15 +336,23 @@
             rules: nextProps.rules
           });
           widget = $node.data('kendoDropDownList');
-          widget.enable(this.props.enabled);
           widget.readonly(this.props.readonly);
+          widget.enable(this.props.enabled);
           widget.bind('change', this._onChange);
         } else {
           if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
-          if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+          if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
         }
       }
+    },
+
+    render: function () {
+      return React.createElement('div', {
+        id: this.props.id,
+        className: this.props.className,
+        style: this.props.style
+      });
     },
 
     _onChange: function (event) {
@@ -386,8 +402,8 @@
 
       // set initial enabled and readonly settings
       var widget = $node.data("kendoNumericTextBox");
-      widget.enable(this.props.enabled);
       widget.readonly(this.props.readonly);
+      widget.enable(this.props.enabled);
 
       // bind to widget events
       widget.bind('change', this._onChange);
@@ -403,8 +419,8 @@
         nextProps.max !== this.props.max ||
         nextProps.min !== this.props.min ||
         nextProps.step !== this.props.step ||
-        nextProps.enabled !== this.props.enabled ||
         nextProps.readonly !== this.props.readonly ||
+        nextProps.enabled !== this.props.enabled ||
         nextProps.format !== this.props.format
       ) {
         var widget = $(this.getDOMNode()).data('kendoNumericTextBox');
@@ -412,14 +428,23 @@
         if (nextProps.max !== this.props.max) { widget.max(nextProps.max); }
         if (nextProps.min !== this.props.min) { widget.min(nextProps.min); }
         if (nextProps.step !== this.props.step) { widget.step(nextProps.step); }
-        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
         if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
         // the format prop does not have a dedicated setter
         if (nextProps.format !== this.props.format) {
           widget.options.format = nextProps.format;
           widget.value(widget.value()); // this updates the UI with the new format immediately
         }
       }
+    },
+
+    // NumericTextBox can't be based on a div element
+    render: function () {
+      return React.createElement('input', {
+        id: this.props.id,
+        className: this.props.className,
+        style: this.props.style
+      });
     },
 
     _onChange: function (event) {
@@ -451,8 +476,8 @@
     propTypes: {
       value: React.PropTypes.string,
       text: React.PropTypes.string,
-      enabled: React.PropTypes.bool,
       readonly: React.PropTypes.bool,
+      enabled: React.PropTypes.bool,
       filter: React.PropTypes.object,
       data: React.PropTypes.array,
       dataTextField: React.PropTypes.string,
@@ -462,6 +487,7 @@
     componentDidMount: function () {
       var $node = $(this.getDOMNode())
       $node.kendoDropDownList({
+        animation: false,
         value: this.props.value,
         text: this.props.text,
         filter: this.props.filter,
@@ -470,8 +496,8 @@
         dataValueField: this.props.dataValueField
       });
       var widget = $node.data('kendoDropDownList');
-      widget.enable(this.props.enabled);
       widget.readonly(this.props.readonly);
+      widget.enable(this.props.enabled);
       widget.bind('change', this._onChange);
     },
 
@@ -499,6 +525,7 @@
           // destroy and rebuild widget if dataTextField or dataValueField changes (keep it stateless!)
           widget.destroy();
           $node.kendoDropDownList({
+            animation: false,
             text: nextProps.text,
             value: nextProps.value,
             filter: nextProps.filter,
@@ -507,19 +534,28 @@
             dataValueField: nextProps.dataValueField
           });
           widget = $node.data('kendoDropDownList');
-          widget.enable(this.props.enabled);
           widget.readonly(this.props.readonly);
+          widget.enable(this.props.enabled);
           widget.bind('change', this._onChange);
         } else {
           // update other props individually
           if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.text !== this.props.text) { widget.text(nextProps.text); }
-          if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+          if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
           if (nextProps.data !== this.props.data) { widget.setDataSource(nextProps.data); }
           if (nextProps.filter !== this.props.filter) { widget.options.filter = nextProps.filter; }
         }
       }
+    },
+
+    // DropDownList must be a div element to allow setting width properly
+    render: function () {
+      return React.createElement('div', {
+        id: this.props.id,
+        className: this.props.className,
+        style: this.props.style
+      });
     },
 
     _onChange: function (event) {
@@ -551,8 +587,8 @@
     propTypes: {
       value: React.PropTypes.string,
       text: React.PropTypes.string,
-      enabled: React.PropTypes.bool,
       readonly: React.PropTypes.bool,
+      enabled: React.PropTypes.bool,
       filter: React.PropTypes.object,
       data: React.PropTypes.array,
       dataTextField: React.PropTypes.string,
@@ -570,8 +606,8 @@
         dataValueField: this.props.dataValueField
       });
       var widget = $node.data('kendoComboBox');
-      widget.enable(this.props.enabled);
       widget.readonly(this.props.readonly);
+      widget.enable(this.props.enabled);
       widget.bind('change', this._onChange);
     },
 
@@ -583,8 +619,8 @@
       if (
         nextProps.value !== this.props.value ||
         nextProps.text !== this.props.text ||
-        nextProps.enabled !== this.props.enabled ||
         nextProps.readonly !== this.props.readonly ||
+        nextProps.enabled !== this.props.enabled ||
         nextProps.data !== this.props.data ||
         nextProps.filter !== this.props.filter ||
         nextProps.dataTextField !== this.props.dataTextField ||
@@ -607,19 +643,27 @@
             dataValueField: nextProps.dataValueField
           });
           widget = $node.data('kendoComboBox');
-          widget.enable(this.props.enabled);
           widget.readonly(this.props.readonly);
+          widget.enable(this.props.enabled);
           widget.bind('change', this._onChange);
         } else {
           // update other props individually
           if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.text !== this.props.text) { widget.text(nextProps.text); }
-          if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+          if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
           if (nextProps.data !== this.props.data) { widget.setDataSource(nextProps.data); }
           if (nextProps.filter !== this.props.filter) { widget.options.filter = nextProps.filter; }
         }
       }
+    },
+
+    render: function () {
+      return React.createElement('div', {
+        id: this.props.id,
+        className: this.props.className,
+        style: this.props.style
+      });
     },
 
     _onChange: function (event) {
