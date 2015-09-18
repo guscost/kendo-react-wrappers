@@ -174,7 +174,7 @@
     },
 
     render: function () {
-      return React.createElement('div', {
+      return React.createElement('input', {
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -258,7 +258,7 @@
     },
 
     render: function () {
-      return React.createElement('div', {
+      return React.createElement('input', {
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -348,7 +348,7 @@
     },
 
     render: function () {
-      return React.createElement('div', {
+      return React.createElement('input', {
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
