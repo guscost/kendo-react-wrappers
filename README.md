@@ -35,6 +35,7 @@ You must include all props that should not revert to the widget defaults on ever
   - `format` prop uses `widget.setOptions()`
   - `enabled` prop uses `widget.enable()`
   - `readonly` prop uses `widget.readonly()`
+  - `width` prop sets uses `widget.wrapper.css()` to set the width
   - `onChange` prop is a callback that runs on `change` event
 
 - DateTimePicker
@@ -44,6 +45,7 @@ You must include all props that should not revert to the widget defaults on ever
   - `format` prop uses `widget.setOptions()`
   - `enabled` prop uses `widget.enable()`
   - `readonly` prop uses `widget.readonly()`
+  - `width` prop sets uses `widget.wrapper.css()` to set the width
   - `onChange` prop is a callback that runs on `change` event
 
 - MaskedTextBox
@@ -52,6 +54,7 @@ You must include all props that should not revert to the widget defaults on ever
   - `readonly` prop uses `widget.readonly()`
   - `mask` prop rebuilds the widget on change
   - `rules` prop rebuilds the widget on change
+  - `width` prop sets uses `widget.wrapper.css()` to set the width
   - `onChange` prop is a callback that runs on `change` event
 
 - NumericTextBox
@@ -62,6 +65,7 @@ You must include all props that should not revert to the widget defaults on ever
   - `enabled` prop uses `widget.enable()`
   - `readonly` prop uses `widget.readonly()`
   - `format` prop manually sets `widget.options` and triggers an update
+  - `width` prop sets uses `widget.wrapper.css()` to set the width
   - `onChange` prop is a callback that runs on `change` and `spin` events
 
 - DropDownList
@@ -73,6 +77,7 @@ You must include all props that should not revert to the widget defaults on ever
   - `filter` prop manually sets `widget.options` and triggers an update
   - `dataTextField` prop rebuilds the widget on change
   - `dataValueField` prop rebuilds the widget on change
+  - `width` prop sets uses `widget.wrapper.css()` to set the width
   - `onChange` prop is a callback that runs on `change` event
 
 - ComboBox
@@ -84,4 +89,5 @@ You must include all props that should not revert to the widget defaults on ever
   - `filter` prop manually sets `widget.options` and triggers an update
   - `dataTextField` prop rebuilds the widget on change
   - `dataValueField` prop rebuilds the widget on change
+  - `width` prop sets uses `widget.wrapper.css()` to set the width
   - `onChange` prop is a callback that runs on `change` event

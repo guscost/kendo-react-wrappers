@@ -116,7 +116,8 @@
       min: React.PropTypes.string,
       format: React.PropTypes.string,
       enabled: React.PropTypes.bool,
-      readonly: React.PropTypes.bool
+      readonly: React.PropTypes.bool,
+      width: React.PropTypes.string
     },
 
     getDefaultProps: function () {
@@ -126,7 +127,8 @@
         min: '0001-01-01',
         format: 'MM/dd/yyyy',
         enabled: true,
-        readonly: false
+        readonly: false,
+        width: null
       };
     },
 
@@ -139,6 +141,7 @@
         format: this.props.format
       });
       var widget = $node.data('kendoDatePicker');
+      widget.wrapper.css({ width: this.props.width });
       widget.readonly(this.props.readonly);
       widget.enable(this.props.enabled);
       widget.bind('change', this._onChange);
@@ -159,6 +162,9 @@
       ) {
         var widget = $(this.getDOMNode()).data('kendoDatePicker');
         var newOptions = {};
+
+        // update width
+        if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
 
         // these props have setter functions
         if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
@@ -200,7 +206,8 @@
       min: React.PropTypes.string,
       format: React.PropTypes.string,
       enabled: React.PropTypes.bool,
-      readonly: React.PropTypes.bool
+      readonly: React.PropTypes.bool,
+      width: React.PropTypes.string
     },
 
     getDefaultProps: function () {
@@ -210,7 +217,8 @@
         min: '0001-01-01T00:00:00Z',
         format: 'MM/dd/yyyy h:mm tt',
         enabled: true,
-        readonly: false
+        readonly: false,
+        width: null
       };
     },
 
@@ -223,6 +231,7 @@
         format: this.props.format
       });
       var widget = $node.data('kendoDateTimePicker');
+      widget.wrapper.css({ width: this.props.width });
       widget.enable(this.props.enabled);
       widget.readonly(this.props.readonly);
       widget.bind('change', this._onChange);
@@ -243,6 +252,9 @@
       ) {
         var widget = $(this.getDOMNode()).data('kendoDateTimePicker');
         var newOptions = {};
+
+        // update width
+        if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
 
         // these props have setter functions
         if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
@@ -283,7 +295,8 @@
       mask: React.PropTypes.string,
       rules: React.PropTypes.object,
       enabled: React.PropTypes.bool,
-      readonly: React.PropTypes.bool
+      readonly: React.PropTypes.bool,
+      width: React.PropTypes.string
     },
 
     getDefaultProps: function () {
@@ -292,7 +305,8 @@
         mask: null,
         rules: null,
         enabled: true,
-        readonly: false
+        readonly: false,
+        width: null
       };
     },
 
@@ -306,6 +320,7 @@
 
       // set initial enabled and readonly settings
       var widget = $node.data("kendoMaskedTextBox");
+      widget.wrapper.css({ width: this.props.width });
       widget.readonly(this.props.readonly);
       widget.enable(this.props.enabled);
 
@@ -336,10 +351,12 @@
             rules: nextProps.rules
           });
           widget = $node.data('kendoDropDownList');
+          widget.wrapper.css({ width: this.props.width });
           widget.readonly(this.props.readonly);
           widget.enable(this.props.enabled);
           widget.bind('change', this._onChange);
         } else {
+          if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
           if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
           if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
@@ -375,7 +392,8 @@
       step: React.PropTypes.number,
       format: React.PropTypes.string,
       enabled: React.PropTypes.bool,
-      readonly: React.PropTypes.bool
+      readonly: React.PropTypes.bool,
+      width: React.PropTypes.string
     },
 
     getDefaultProps: function () {
@@ -386,7 +404,8 @@
         step: 1,
         format: '0.00',
         enabled: true,
-        readonly: false
+        readonly: false,
+        width: null
       };
     },
 
@@ -402,6 +421,7 @@
 
       // set initial enabled and readonly settings
       var widget = $node.data("kendoNumericTextBox");
+      widget.wrapper.css({ width: this.props.width });
       widget.readonly(this.props.readonly);
       widget.enable(this.props.enabled);
 
@@ -424,6 +444,7 @@
         nextProps.format !== this.props.format
       ) {
         var widget = $(this.getDOMNode()).data('kendoNumericTextBox');
+        if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
         if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
         if (nextProps.max !== this.props.max) { widget.max(nextProps.max); }
         if (nextProps.min !== this.props.min) { widget.min(nextProps.min); }
@@ -460,6 +481,18 @@
 
     mixins: [_kendoInputMixin],
 
+    propTypes: {
+      value: React.PropTypes.string,
+      text: React.PropTypes.string,
+      readonly: React.PropTypes.bool,
+      enabled: React.PropTypes.bool,
+      filter: React.PropTypes.object,
+      data: React.PropTypes.array,
+      dataTextField: React.PropTypes.string,
+      dataValueField: React.PropTypes.string,
+      width: React.PropTypes.string
+    },
+
     getDefaultProps: function () {
       return {
         value: '',
@@ -469,19 +502,9 @@
         filter: undefined,
         data: [],
         dataTextField: null,
-        dataValueField: null
+        dataValueField: null,
+        width: null
       };
-    },
-
-    propTypes: {
-      value: React.PropTypes.string,
-      text: React.PropTypes.string,
-      readonly: React.PropTypes.bool,
-      enabled: React.PropTypes.bool,
-      filter: React.PropTypes.object,
-      data: React.PropTypes.array,
-      dataTextField: React.PropTypes.string,
-      dataValueField: React.PropTypes.string
     },
 
     componentDidMount: function () {
@@ -496,6 +519,7 @@
         dataValueField: this.props.dataValueField
       });
       var widget = $node.data('kendoDropDownList');
+      widget.wrapper.css({ width: this.props.width });
       widget.readonly(this.props.readonly);
       widget.enable(this.props.enabled);
       widget.bind('change', this._onChange);
@@ -534,11 +558,13 @@
             dataValueField: nextProps.dataValueField
           });
           widget = $node.data('kendoDropDownList');
+          widget.wrapper.css({ width: this.props.width });
           widget.readonly(this.props.readonly);
           widget.enable(this.props.enabled);
           widget.bind('change', this._onChange);
         } else {
           // update other props individually
+          if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
           if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.text !== this.props.text) { widget.text(nextProps.text); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
@@ -571,6 +597,18 @@
 
     mixins: [_kendoInputMixin],
 
+    propTypes: {
+      value: React.PropTypes.string,
+      text: React.PropTypes.string,
+      readonly: React.PropTypes.bool,
+      enabled: React.PropTypes.bool,
+      filter: React.PropTypes.object,
+      data: React.PropTypes.array,
+      dataTextField: React.PropTypes.string,
+      dataValueField: React.PropTypes.string,
+      width: React.PropTypes.string
+    },
+
     getDefaultProps: function () {
       return {
         value: '',
@@ -580,19 +618,9 @@
         filter: undefined,
         data: [],
         dataTextField: null,
-        dataValueField: null
+        dataValueField: null,
+        width: null
       };
-    },
-
-    propTypes: {
-      value: React.PropTypes.string,
-      text: React.PropTypes.string,
-      readonly: React.PropTypes.bool,
-      enabled: React.PropTypes.bool,
-      filter: React.PropTypes.object,
-      data: React.PropTypes.array,
-      dataTextField: React.PropTypes.string,
-      dataValueField: React.PropTypes.string
     },
 
     componentDidMount: function () {
@@ -606,6 +634,7 @@
         dataValueField: this.props.dataValueField
       });
       var widget = $node.data('kendoComboBox');
+      widget.wrapper.css({ width: this.props.width });
       widget.readonly(this.props.readonly);
       widget.enable(this.props.enabled);
       widget.bind('change', this._onChange);
@@ -643,11 +672,13 @@
             dataValueField: nextProps.dataValueField
           });
           widget = $node.data('kendoComboBox');
+          widget.wrapper.css({ width: this.props.width });
           widget.readonly(this.props.readonly);
           widget.enable(this.props.enabled);
           widget.bind('change', this._onChange);
         } else {
           // update other props individually
+          if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
           if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.text !== this.props.text) { widget.text(nextProps.text); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
