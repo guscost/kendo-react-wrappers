@@ -194,6 +194,96 @@
   });
 
   // ------------------------------
+  // TimePicker component
+  // ------------------------------
+  var TimePicker = React.createClass({
+
+    mixins: [_kendoInputMixin],
+
+    propTypes: {
+      value: React.PropTypes.string, // dates are passed as ISO format strings
+      max: React.PropTypes.string,
+      min: React.PropTypes.string,
+      format: React.PropTypes.string,
+      enabled: React.PropTypes.bool,
+      readonly: React.PropTypes.bool,
+      width: React.PropTypes.string
+    },
+
+    getDefaultProps: function () {
+      return {
+        value: '',
+        max: '00:00',
+        min: '00:00',
+        format: 'h:mm tt',
+        enabled: true,
+        readonly: false,
+        width: null
+      };
+    },
+
+    componentDidMount: function () {
+      var $node = $(this.getDOMNode());
+      $node.kendoTimePicker({
+        value: this.props.value ? moment(this.props.value).toDate() : "",
+        max: this.props.max,
+        min: this.props.min,
+        format: this.props.format
+      });
+      var widget = $node.data('kendoTimePicker');
+      widget.wrapper.css({ width: this.props.width });
+      widget.readonly(this.props.readonly);
+      widget.enable(this.props.enabled);
+      widget.bind('change', this._onChange);
+    },
+
+    componentWillUnmount: function () {
+      $(this.getDOMNode()).data('kendoTimePicker').destroy();
+    },
+
+    componentWillReceiveProps: function (nextProps) {
+      if (
+        nextProps.value !== this.props.value ||
+        nextProps.enabled !== this.props.enabled ||
+        nextProps.readonly !== this.props.readonly ||
+        nextProps.max !== this.props.max ||
+        nextProps.min !== this.props.min ||
+        nextProps.format !== this.props.format
+      ) {
+        var widget = $(this.getDOMNode()).data('kendoTimePicker');
+        var newOptions = {};
+
+        // update width
+        if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
+
+        // these props have setter functions
+        if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
+        if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
+
+        // build new options object to set these
+        if (nextProps.max !== this.props.max) { newOptions.max = moment(nextProps.max).toDate(); }
+        if (nextProps.min !== this.props.min) { newOptions.min = moment(nextProps.min).toDate(); }
+        if (nextProps.format !== this.props.format) { newOptions.format = nextProps.format; }
+        if (newOptions) { widget.setOptions(newOptions); }
+      }
+    },
+
+    render: function () {
+      return React.createElement('input', {
+        id: this.props.id,
+        className: this.props.className,
+        style: this.props.style
+      });
+    },
+
+    _onChange: function (event) {
+      var newValue = moment($(event.sender.element).data('kendoTimePicker').value()).toISOString();
+      if (newValue !== this.props.value) { this.props.onChange(newValue); }
+    }
+  });
+
+  // ------------------------------
   // DateTimePicker component
   // ------------------------------
   var DateTimePicker = React.createClass({
@@ -393,6 +483,7 @@
       format: React.PropTypes.string,
       enabled: React.PropTypes.bool,
       readonly: React.PropTypes.bool,
+      spinners: React.PropTypes.bool,
       width: React.PropTypes.string
     },
 
@@ -405,6 +496,7 @@
         format: '0.00',
         enabled: true,
         readonly: false,
+        spinners: true,
         width: null
       };
     },
@@ -416,7 +508,8 @@
         max: this.props.max,
         min: this.props.min,
         step: this.props.step,
-        format: this.props.format
+        format: this.props.format,
+        spinners: this.props.spinners
       });
 
       // set initial enabled and readonly settings
@@ -441,7 +534,8 @@
         nextProps.step !== this.props.step ||
         nextProps.readonly !== this.props.readonly ||
         nextProps.enabled !== this.props.enabled ||
-        nextProps.format !== this.props.format
+        nextProps.format !== this.props.format ||
+        nextProps.spinners !== this.props.spinners
       ) {
         var widget = $(this.getDOMNode()).data('kendoNumericTextBox');
         if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
@@ -452,8 +546,9 @@
         if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
         if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
         // the format prop does not have a dedicated setter
-        if (nextProps.format !== this.props.format) {
+        if (nextProps.format !== this.props.format || nextProps.spinners !== this.props.spinners) {
           widget.options.format = nextProps.format;
+          widget.options.spinners = nextProps.spinners;
           widget.value(widget.value()); // this updates the UI with the new format immediately
         }
       }
@@ -705,6 +800,7 @@
 
   return {
     DatePicker: DatePicker,
+    TimePicker: TimePicker,
     DateTimePicker: DateTimePicker,
     MaskedTextBox: MaskedTextBox,
     NumericTextBox: NumericTextBox,
