@@ -110,6 +110,8 @@
 
     mixins: [_kendoInputMixin],
 
+    displayName: "KW.DatePicker",
+
     propTypes: {
       value: React.PropTypes.string, // dates are passed as ISO format strings
       max: React.PropTypes.string,
@@ -199,6 +201,8 @@
   var TimePicker = React.createClass({
 
     mixins: [_kendoInputMixin],
+
+    displayName: "KW.TimePicker",
 
     propTypes: {
       value: React.PropTypes.string, // dates are passed as ISO format strings
@@ -290,6 +294,8 @@
 
     mixins: [_kendoInputMixin],
 
+    displayName: "KW.DateTimePicker",
+
     propTypes: {
       value: React.PropTypes.string, // dates are passed as ISO format strings
       max: React.PropTypes.string,
@@ -379,6 +385,8 @@
   var MaskedTextBox = React.createClass({
 
     mixins: [_kendoInputMixin],
+
+    displayName: "KW.MaskedTextBox",
 
     propTypes: {
       value: React.PropTypes.number,
@@ -474,6 +482,8 @@
   var NumericTextBox = React.createClass({
 
     mixins: [_kendoInputMixin],
+
+    displayName: "KW.NumericTextBox",
 
     propTypes: {
       value: React.PropTypes.number,
@@ -575,6 +585,8 @@
   var DropDownList = React.createClass({
 
     mixins: [_kendoInputMixin],
+
+    displayName: "KW.DropDownList",
 
     propTypes: {
       value: React.PropTypes.string,
@@ -691,6 +703,8 @@
   var ComboBox = React.createClass({
 
     mixins: [_kendoInputMixin],
+
+    displayName: "KW.ComboBox",
 
     propTypes: {
       value: React.PropTypes.string,
