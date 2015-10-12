@@ -168,16 +168,16 @@
         // update width
         if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
 
-        // these props have setter functions
-        if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
-        if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
-        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
-
         // build new options object to set these
         if (nextProps.max !== this.props.max) { newOptions.max = moment(nextProps.max).toDate(); }
         if (nextProps.min !== this.props.min) { newOptions.min = moment(nextProps.min).toDate(); }
         if (nextProps.format !== this.props.format) { newOptions.format = nextProps.format; }
         if (newOptions) { widget.setOptions(newOptions); }
+
+        // these props have setter functions
+        if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
+        if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
       }
     },
 
@@ -260,16 +260,16 @@
         // update width
         if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
 
-        // these props have setter functions
-        if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
-        if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
-        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
-
         // build new options object to set these
         if (nextProps.max !== this.props.max) { newOptions.max = moment(nextProps.max).toDate(); }
         if (nextProps.min !== this.props.min) { newOptions.min = moment(nextProps.min).toDate(); }
         if (nextProps.format !== this.props.format) { newOptions.format = nextProps.format; }
         if (newOptions) { widget.setOptions(newOptions); }
+
+        // these props have setter functions
+        if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
+        if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
       }
     },
 
@@ -352,16 +352,16 @@
         // update width
         if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
 
-        // these props have setter functions
-        if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
-        if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
-        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
-
         // build new options object to set these
         if (nextProps.max !== this.props.max) { newOptions.max = moment(nextProps.max).toDate(); }
         if (nextProps.min !== this.props.min) { newOptions.min = moment(nextProps.min).toDate(); }
         if (nextProps.format !== this.props.format) { newOptions.format = nextProps.format; }
         if (newOptions) { widget.setOptions(newOptions); }
+
+        // these props have setter functions
+        if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
+        if (nextProps.value !== this.props.value) { widget.value(moment(nextProps.value).toDate()); }
       }
     },
 
@@ -455,9 +455,9 @@
           widget.bind('change', this._onChange);
         } else {
           if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
-          if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
           if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
+          if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
         }
       }
     },
@@ -549,12 +549,12 @@
       ) {
         var widget = $(this.getDOMNode()).data('kendoNumericTextBox');
         if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
-        if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
         if (nextProps.max !== this.props.max) { widget.max(nextProps.max); }
         if (nextProps.min !== this.props.min) { widget.min(nextProps.min); }
         if (nextProps.step !== this.props.step) { widget.step(nextProps.step); }
         if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
         if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
+        if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
         // the format prop does not have a dedicated setter
         if (nextProps.format !== this.props.format || nextProps.spinners !== this.props.spinners) {
           widget.options.format = nextProps.format;
@@ -672,12 +672,12 @@
         } else {
           // update other props individually
           if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
-          if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.text !== this.props.text) { widget.text(nextProps.text); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
           if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
           if (nextProps.data !== this.props.data) { widget.setDataSource(nextProps.data); }
           if (nextProps.filter !== this.props.filter) { widget.options.filter = nextProps.filter; }
+          if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
         }
       }
     },
@@ -788,12 +788,12 @@
         } else {
           // update other props individually
           if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
-          if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
           if (nextProps.text !== this.props.text) { widget.text(nextProps.text); }
           if (nextProps.readonly !== this.props.readonly) { widget.readonly(nextProps.readonly); }
           if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
           if (nextProps.data !== this.props.data) { widget.setDataSource(nextProps.data); }
           if (nextProps.filter !== this.props.filter) { widget.options.filter = nextProps.filter; }
+          if (nextProps.value !== this.props.value) { widget.value(nextProps.value); }
         }
       }
     },
