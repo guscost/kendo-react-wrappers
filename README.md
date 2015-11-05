@@ -91,3 +91,7 @@ You must include all props that should not revert to the widget defaults on ever
   - `dataValueField` prop rebuilds the widget on change
   - `width` prop sets uses `widget.wrapper.css()` to set the width
   - `onChange` prop is a callback that runs on `change` event
+
+## `readonly` and `enabled`
+In Kendo, calling `widget.enable(true)` overwrites the current value of `readonly` (setting it to `false`), and calling `widget.readonly(false)` overwrites the current value of `enabled` (setting it to `true`).  Therefore, you should only use `readonly` or `enabled`, but not both.  Otherwise you might have unexpected results.
+
