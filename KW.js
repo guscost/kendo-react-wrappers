@@ -104,6 +104,77 @@
   };
 
   // ------------------------------
+  // Button component
+  // ------------------------------
+  var Button = React.createClass({
+    displayName: "KW.Button",
+
+    propTypes: {
+      id: React.PropTypes.string,
+      className: React.PropTypes.string,
+      style: React.PropTypes.object,
+      icon: React.PropTypes.string,
+      enabled: React.PropTypes.bool,
+      onClick: React.PropTypes.func
+    },
+
+    getDefaultProps: function() {
+      return {
+        id: '',
+        className: '',
+        style: {},
+        icon: null,
+        enabled: true,
+        onClick: function(e) {
+          // do nothing
+        },
+      };
+    },
+
+    componentDidMount: function() {
+      var $node = $(this.getDOMNode());
+
+      $node.kendoButton({
+        icon: this.props.icon,
+        enable: this.props.enabled,
+      });
+
+      var widget = $node.data('kendoButton');
+      widget.bind('click', this._onClick);
+    },
+
+    componentWillUnmount: function() {
+      $(this.getDOMNode()).data('kendoButton').destroy();
+    },
+
+    componentWillReceiveProps: function (nextProps) {
+      if (
+        nextProps.enabled !== this.props.enabled ||
+        nextProps.icon !== this.props.icon
+      ) {
+        var widget = $(this.getDOMNode()).data('kendoButton');
+        var newOptions = {};
+
+        if (nextProps.icon !== this.props.icon) { newOptions.icon = nextProps.icon; }
+        widget.setOptions(newOptions);
+
+        // these props have setter functions
+        if (nextProps.enabled !== this.props.enabled) { widget.enable(nextProps.enabled); }
+      }
+    },
+    render: function () {
+      return React.createElement('div', {
+        id: this.props.id,
+        className: "k-button " + this.props.className,
+        style: this.props.style
+      }, this.props.children);
+    },
+    _onClick: function(e) {
+      this.props.onClick(e);
+    },
+  });
+
+  // ------------------------------
   // DatePicker component
   // ------------------------------
   var DatePicker = React.createClass({
@@ -813,6 +884,7 @@
   });
 
   return {
+    Button: Button,
     DatePicker: DatePicker,
     TimePicker: TimePicker,
     DateTimePicker: DateTimePicker,

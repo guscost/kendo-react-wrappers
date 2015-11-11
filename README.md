@@ -28,6 +28,11 @@ You must include all props that should not revert to the widget defaults on ever
 
 ## Widgets:
 
+- Button
+  - `enabled` prop uses `widget.enable()`
+  - `icon` prop uses `widget.setOptions()`
+  - `onClick` prop is a callback that runs on `click` event
+
 - DatePicker
   - `value` prop uses `widget.value()`
   - `max` prop uses `widget.setOptions()`
