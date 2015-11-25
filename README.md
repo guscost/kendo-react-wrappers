@@ -1,5 +1,5 @@
 # kendo-react-wrappers
-Use Kendo UI Core widgets in a React application
+Use [Kendo UI Core](https://github.com/telerik/kendo-ui-core) widgets in a React application
 
 ## Summary
 These wrappers are designed as drop-in React components. Use as follows:
