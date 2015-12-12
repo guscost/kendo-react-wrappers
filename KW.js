@@ -89,14 +89,17 @@
           }
 
           // kendo does not alter style except for making swapped inputs invisible
-          // the visibility style is still being updated so we can just reset every time
           if (nextProps.style !== this.props.style) {
+            var nodeDisplayNone = $node.css("display") === "none";
+            var formattedDisplayNone = $formatted.css("display") === "none";
             $node.removeAttr('style');
             $node.css(nextProps.style);
             $wrapper.removeAttr('style');
             $wrapper.css(nextProps.style);
             $formatted.removeAttr('style');
             $formatted.css(nextProps.style);
+            if (nodeDisplayNone) { $node.css({ display: "none" }); }
+            if (formattedDisplayNone) { $formatted.css({ display: "none" }); }
           }
         }
       }
