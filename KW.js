@@ -54,7 +54,7 @@
         nextProps.style !== this.props.style
       ) {
         // save DOM reference
-        var $node = $(ReactDOM.findDOMNode(this));
+        var $node = $(this.refs.node);
 
         // id attribute is just a direct update
         if (nextProps.id !== this.props.id) {
@@ -135,7 +135,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this));
+      var $node = $(this.refs.node);
 
       $node.kendoButton({
         icon: this.props.icon,
@@ -147,7 +147,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoButton').destroy();
+      $(this.refs.node).data('kendoButton').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -155,7 +155,7 @@
         nextProps.enabled !== this.props.enabled ||
         nextProps.icon !== this.props.icon
       ) {
-        var widget = $(ReactDOM.findDOMNode(this)).data('kendoButton');
+        var widget = $(this.refs.node).data('kendoButton');
         var newOptions = {};
 
         if (nextProps.icon !== this.props.icon) { newOptions.icon = nextProps.icon; }
@@ -167,8 +167,9 @@
     },
     render: function () {
       return React.createElement('div', {
+        ref: 'node',
         id: this.props.id,
-        className: "k-button " + this.props.className,
+        className: 'k-button ' + this.props.className,
         style: this.props.style
       }, this.props.children);
     },
@@ -209,7 +210,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this));
+      var $node = $(this.refs.node);
       $node.kendoDatePicker({
         value: this.props.value ? moment(this.props.value).toDate() : "",
         max: this.props.max,
@@ -224,7 +225,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoDatePicker').destroy();
+      $(this.refs.node).data('kendoDatePicker').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -236,7 +237,7 @@
         nextProps.min !== this.props.min ||
         nextProps.format !== this.props.format
       ) {
-        var widget = $(ReactDOM.findDOMNode(this)).data('kendoDatePicker');
+        var widget = $(this.refs.node).data('kendoDatePicker');
         var newOptions = {};
 
         // update width
@@ -257,6 +258,7 @@
 
     render: function () {
       return React.createElement('input', {
+        ref: 'node',
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -301,7 +303,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this));
+      var $node = $(this.refs.node);
       $node.kendoTimePicker({
         value: this.props.value ? moment(this.props.value).toDate() : "",
         max: this.props.max,
@@ -316,7 +318,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoTimePicker').destroy();
+      $(this.refs.node).data('kendoTimePicker').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -328,7 +330,7 @@
         nextProps.min !== this.props.min ||
         nextProps.format !== this.props.format
       ) {
-        var widget = $(ReactDOM.findDOMNode(this)).data('kendoTimePicker');
+        var widget = $(this.refs.node).data('kendoTimePicker');
         var newOptions = {};
 
         // update width
@@ -349,6 +351,7 @@
 
     render: function () {
       return React.createElement('input', {
+        ref: 'node',
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -393,7 +396,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this));
+      var $node = $(this.refs.node);
       $node.kendoDateTimePicker({
         value: this.props.value ? moment(this.props.value).toDate() : "",
         max: this.props.max,
@@ -408,7 +411,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoDateTimePicker').destroy();
+      $(this.refs.node).data('kendoDateTimePicker').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -420,7 +423,7 @@
         nextProps.min !== this.props.min ||
         nextProps.format !== this.props.format
       ) {
-        var widget = $(ReactDOM.findDOMNode(this)).data('kendoDateTimePicker');
+        var widget = $(this.refs.node).data('kendoDateTimePicker');
         var newOptions = {};
 
         // update width
@@ -441,6 +444,7 @@
 
     render: function () {
       return React.createElement('input', {
+        ref: 'node',
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -483,7 +487,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this));
+      var $node = $(this.refs.node);
       $node.kendoMaskedTextBox({
         value: this.props.value,
         mask: this.props.mask,
@@ -501,7 +505,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoMaskedTextBox').destroy();
+      $(this.refs.node).data('kendoMaskedTextBox').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -512,7 +516,7 @@
         nextProps.mask !== this.props.mask ||
         nextProps.rules !== this.props.rules
       ) {
-        var $node = $(ReactDOM.findDOMNode(this));
+        var $node = $(this.refs.node);
         var widget = $node.data('kendoMaskedTextBox');
         if (nextProps.mask !== this.props.mask || nextProps.rules !== this.props.rules) {
           // destroy and rebuild widget if mask or rules changes (keep it stateless!)
@@ -538,6 +542,7 @@
 
     render: function () {
       return React.createElement('input', {
+        ref: 'node',
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -586,7 +591,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this));
+      var $node = $(this.refs.node);
       $node.kendoNumericTextBox({
         value: this.props.value,
         max: this.props.max,
@@ -608,7 +613,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoNumericTextBox').destroy();
+      $(this.refs.node).data('kendoNumericTextBox').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -621,7 +626,7 @@
         nextProps.format !== this.props.format ||
         nextProps.spinners !== this.props.spinners
       ) {
-        var widget = $(ReactDOM.findDOMNode(this)).data('kendoNumericTextBox');
+        var widget = $(this.refs.node).data('kendoNumericTextBox');
         if (nextProps.width !== this.props.width) { widget.wrapper.css({ width: this.props.width }); }
         if (nextProps.max !== this.props.max) { widget.max(nextProps.max); }
         if (nextProps.min !== this.props.min) { widget.min(nextProps.min); }
@@ -641,6 +646,7 @@
     // NumericTextBox can't be based on a div element
     render: function () {
       return React.createElement('input', {
+        ref: 'node',
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -689,7 +695,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this))
+      var $node = $(this.refs.node);
       $node.kendoDropDownList({
         animation: false,
         value: this.props.value,
@@ -707,7 +713,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoDropDownList').destroy();
+      $(this.refs.node).data('kendoDropDownList').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -721,7 +727,7 @@
         nextProps.dataTextField !== this.props.dataTextField ||
         nextProps.dataValueField !== this.props.dataValueField
       ) {
-        var $node = $(ReactDOM.findDOMNode(this));
+        var $node = $(this.refs.node);
         var widget = $node.data('kendoDropDownList');
         if (
           nextProps.dataTextField !== this.props.dataTextField ||
@@ -759,6 +765,7 @@
     // DropDownList must be a div element to allow setting width properly
     render: function () {
       return React.createElement('div', {
+        ref: 'node',
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
@@ -807,7 +814,7 @@
     },
 
     componentDidMount: function () {
-      var $node = $(ReactDOM.findDOMNode(this))
+      var $node = $(this.refs.node)
       $node.kendoComboBox({
         value: this.props.value,
         text: this.props.text,
@@ -824,7 +831,7 @@
     },
 
     componentWillUnmount: function () {
-      $(ReactDOM.findDOMNode(this)).data('kendoComboBox').destroy();
+      $(this.refs.node).data('kendoComboBox').destroy();
     },
 
     componentWillReceiveProps: function (nextProps) {
@@ -838,7 +845,7 @@
         nextProps.dataTextField !== this.props.dataTextField ||
         nextProps.dataValueField !== this.props.dataValueField
       ) {
-        var $node = $(ReactDOM.findDOMNode(this));
+        var $node = $(this.refs.node);
         var widget = $node.data('kendoComboBox');
         if (
           nextProps.dataTextField !== this.props.dataTextField ||
@@ -874,6 +881,7 @@
 
     render: function () {
       return React.createElement('div', {
+        ref: 'node',
         id: this.props.id,
         className: this.props.className,
         style: this.props.style
