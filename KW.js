@@ -219,8 +219,8 @@
       });
       var widget = $node.data('kendoDatePicker');
       widget.wrapper.css({ width: this.props.width });
-      widget.readonly(this.props.readonly);
-      widget.enable(this.props.enabled);
+      if (this.props.readonly) { widget.readonly(true); }
+      if (!this.props.enabled) { widget.enable(false); }
       widget.bind('change', this._onChange);
     },
 
@@ -312,8 +312,8 @@
       });
       var widget = $node.data('kendoTimePicker');
       widget.wrapper.css({ width: this.props.width });
-      widget.readonly(this.props.readonly);
-      widget.enable(this.props.enabled);
+      if (this.props.readonly) { widget.readonly(true); }
+      if (!this.props.enabled) { widget.enable(false); }
       widget.bind('change', this._onChange);
     },
 
@@ -405,8 +405,8 @@
       });
       var widget = $node.data('kendoDateTimePicker');
       widget.wrapper.css({ width: this.props.width });
-      widget.enable(this.props.enabled);
-      widget.readonly(this.props.readonly);
+      if (!this.props.enabled) { widget.enable(false); }
+      if (this.props.readonly) { widget.readonly(true); }
       widget.bind('change', this._onChange);
     },
 
@@ -497,8 +497,8 @@
       // set initial enabled and readonly settings
       var widget = $node.data("kendoMaskedTextBox");
       widget.wrapper.css({ width: this.props.width });
-      widget.readonly(this.props.readonly);
-      widget.enable(this.props.enabled);
+      if (this.props.readonly) { widget.readonly(true); }
+      if (!this.props.enabled) { widget.enable(false); }
 
       // bind to widget events
       widget.bind('change', this._onChange);
@@ -604,8 +604,8 @@
       // set initial enabled and readonly settings
       var widget = $node.data("kendoNumericTextBox");
       widget.wrapper.css({ width: this.props.width });
-      widget.readonly(this.props.readonly);
-      widget.enable(this.props.enabled);
+      if (this.props.readonly) { widget.readonly(true); }
+      if (!this.props.enabled) { widget.enable(false); }
 
       // bind to widget events
       widget.bind('change', this._onChange);
@@ -707,8 +707,8 @@
       });
       var widget = $node.data('kendoDropDownList');
       widget.wrapper.css({ width: this.props.width });
-      widget.readonly(this.props.readonly);
-      widget.enable(this.props.enabled);
+      if (this.props.readonly) { widget.readonly(true); }
+      if (!this.props.enabled) { widget.enable(false); }
       widget.bind('change', this._onChange);
     },
 
@@ -825,8 +825,8 @@
       });
       var widget = $node.data('kendoComboBox');
       widget.wrapper.css({ width: this.props.width });
-      widget.readonly(this.props.readonly);
-      widget.enable(this.props.enabled);
+      if (this.props.readonly) { widget.readonly(true); }
+      if (!this.props.enabled) { widget.enable(false); }
       widget.bind('change', this._onChange);
     },
 
